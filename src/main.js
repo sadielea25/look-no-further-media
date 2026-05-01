@@ -162,6 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.innerText = 'Submit Application';
       submitBtn.disabled = false;
     } else {
+      // Trigger Email Notification via Vercel Function
+      fetch('/api/send-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
       appForm.innerHTML = '<div class="success-message"><h2>Transmission Successful.</h2><p>Our team is auditing your business now. We will be in touch within 24 hours.</p></div>';
     }
   });
