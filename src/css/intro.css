@@ -1,0 +1,144 @@
+/* intro.css - Cinematic Abstract Intro Animation */
+#intro-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out; /* Faster fade out */
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+#intro-logo {
+  position: relative;
+  z-index: 1; /* Under the lines */
+  max-width: 400px;
+  width: 80%;
+  opacity: 0;
+  transform: scale(0.9);
+  /* Logo reveals, holds, and then fades out before lines zoom away */
+  animation: logoSequence 2.0s forwards;
+}
+
+@keyframes logoSequence {
+  0% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
+  25% { opacity: 1; transform: scale(1); filter: blur(0); } /* Fully visible by 0.5s */
+  75% { opacity: 1; transform: scale(1); filter: blur(0); } /* Holds until 1.5s (when lines swipe in) */
+  85% { opacity: 0; transform: scale(0.9); filter: blur(10px); } /* Fades out behind the lines by 1.7s */
+  100% { opacity: 0; transform: scale(0.9); filter: blur(10px); } /* Stays hidden */
+}
+
+.intro-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; /* full width */
+  height: 100vh; /* full height */
+  display: flex;
+  z-index: 2; /* Over the logo */
+  /* Zoom out AFTER swipe in */
+  animation: zoomLines 0.8s cubic-bezier(0.8, 0, 0.2, 1) 2.0s forwards;
+}
+
+.line {
+  flex: 1; /* evenly distributes 50 lines across full width */
+  height: 100%;
+  background-color: var(--color);
+  transform-origin: left;
+  transform: scaleX(0);
+  /* Swipe in from left, delayed until 1.5s */
+  animation: swipeIn 0.3s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+  animation-delay: calc(1.5s + (var(--i) * 0.015s)); 
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+@keyframes swipeIn {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(calc(var(--w) + 0.5)); /* slight overlap based on random var */ }
+}
+
+@keyframes zoomLines {
+  0% { transform: scale(1) translateZ(0); opacity: 1; }
+  100% { transform: scale(8) translateZ(1000px); opacity: 0; }
+}
+
+/* Glitch Squares */
+.intro-glitches {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.glitch-square {
+  position: absolute;
+  opacity: 0;
+  mix-blend-mode: screen;
+  animation: glitchFlash 0.15s forwards;
+}
+
+@keyframes glitchFlash {
+  0% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1) translate(10px, -10px); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+#intro-logo {
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  width: 80%;
+  opacity: 0;
+  transform: scale(0.8);
+  /* Faster logo reveal */
+  animation: logoReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s forwards;
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+    filter: blur(15px) drop-shadow(0 0 0px rgba(229, 9, 20, 0));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: blur(0) drop-shadow(0 0 30px rgba(229, 9, 20, 0.8));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(229, 9, 20, 0.5));
+  }
+}
+
+/* Class to fade out the intro */
+.intro-fade-out {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* Initially hide the main app to prevent FOUC */
+.hidden {
+  display: none !important;
+}
+
+/* When the app is revealed */
+.app-reveal {
+  display: block !important;
+  animation: fadeInApp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInApp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
