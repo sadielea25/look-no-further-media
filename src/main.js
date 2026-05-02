@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
       position: document.getElementById('position').value,
       business_count: document.getElementById('business-count').value,
       email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
       website_url: document.querySelector('.toggle-group[data-group="website"] .active')?.getAttribute('data-value') === 'yes' ? document.getElementById('website').value : 'Needs Website',
       business_stage: document.getElementById('stage').value,
       running_ads: document.querySelector('.toggle-group[data-group="ads"] .active')?.getAttribute('data-value') === 'yes',
@@ -240,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const chatData = {
         full_name: document.getElementById('chat-name').value,
         email: document.getElementById('chat-email').value,
+        phone: document.getElementById('chat-phone').value,
         marketing_challenge: `CHAT MESSAGE: ${document.getElementById('chat-message').value}`
       };
 

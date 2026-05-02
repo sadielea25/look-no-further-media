@@ -18,6 +18,7 @@ export default async function handler(req, res) {
         <h2>New Lead from The Machine</h2>
         <p><strong>Name:</strong> ${full_name}</p>
         <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${req.body.phone || 'Not provided'}</p>
         <p><strong>Stage:</strong> ${business_stage}</p>
         <p><strong>Challenge:</strong> ${marketing_challenge}</p>
         <hr>

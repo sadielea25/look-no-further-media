@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <form id="chat-form">
             <input type="text" id="chat-name" placeholder="Your Name" required>
             <input type="email" id="chat-email" placeholder="Your Email" required>
+            <input type="tel" id="chat-phone" placeholder="WhatsApp Number" required>
             <textarea id="chat-message" placeholder="Ask us anything..." required></textarea>
             <button type="submit" class="btn-primary">Send Message</button>
           </form>
