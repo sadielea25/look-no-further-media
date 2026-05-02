@@ -249,7 +249,22 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error sending message.');
         submitBtn.innerText = 'Send Message';
       } else {
-        chatForm.innerHTML = '<p class="success-message">Message sent! We\'ll email you soon.</p>';
+        // Trigger Email Notification for Chat
+        fetch('/api/send-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...chatData,
+            business_stage: 'Chat Inquiry' // Tag for email formatting
+          })
+        }).catch(err => console.error('Email trigger error:', err));
+
+        chatForm.innerHTML = `
+          <div class="chat-success">
+            <p><strong>Message Transmitted.</strong></p>
+            <p>The Machine has notified our team. Someone will be in touch shortly via email.</p>
+          </div>
+        `;
       }
     }
   });
