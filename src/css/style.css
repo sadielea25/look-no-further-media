@@ -598,6 +598,9 @@
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: var(--color-red);
   box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), inset 0 0 5px rgba(229, 9, 20, 0.2);
