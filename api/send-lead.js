@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 
-const resend = new Resend('re_jJD3Ekie_Pw1kFHmoM4XpWz58dJPWTeMP');
+const resend = new Resend('re_hnQkrYut_Hf2edc5cTGAKQ6qodnSYjy7t');
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   try {
     const data = await resend.emails.send({
       from: 'Look No Further <onboarding@resend.dev>',
-      to: ['coremmarketgoods@gmail.com'], // Update this to your desired email
+      to: ['sadielea25@gmail.com'], // Updated to account-verified email for testing
       subject: `New Lead: ${full_name} (${business_stage})`,
       html: `
         <h2>New Lead from The Machine</h2>
