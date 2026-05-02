@@ -129,8 +129,17 @@
             <h2 class="section-title">Apply For Your Discovery Call</h2>
             <p>We only partner with businesses we know we can scale. Tell us about your business, and let's see if you're a fit for The Machine.</p>
           </div>
+
+          <div class="form-progress">
+            <div class="progress-step active" data-step="1" data-target="step-details">1<span>Details</span></div>
+            <div class="progress-step" data-step="2" data-target="step-stage">2<span>Stage</span></div>
+            <div class="progress-step" data-step="3" data-target="step-socials">3<span>Socials</span></div>
+            <div class="progress-step" data-step="4" data-target="step-challenge">4<span>Challenge</span></div>
+          </div>
+
           <form class="application-form">
-            <div class="form-section">
+            <!-- Step 1: Details -->
+            <div class="form-section" id="step-details">
               <h3>Your Details</h3>
               <div class="form-grid">
                 <div class="form-group">
@@ -172,29 +181,30 @@
                   </div>
                   <input type="url" id="website" class="conditional-input" placeholder="https://yourwebsite.com" style="display: none;">
                 </div>
-              </div>
-
-              <div class="form-group full-width">
-                <label>Are you currently running any paid ads?</label>
-                <div class="toggle-group" data-group="ads">
-                  <button type="button" class="toggle-btn" data-value="yes">Yes</button>
-                  <button type="button" class="toggle-btn" data-value="no">No, not yet</button>
+                <div class="form-group full-width">
+                  <label>Are you currently running any paid ads?</label>
+                  <div class="toggle-group" data-group="ads">
+                    <button type="button" class="toggle-btn" data-value="yes">Yes</button>
+                    <button type="button" class="toggle-btn" data-value="no">No, not yet</button>
+                  </div>
+                  <div class="checkbox-group conditional-input" style="display: none;">
+                    <label class="checkbox-item"><input type="checkbox" name="ads" value="instagram"><span>Instagram</span></label>
+                    <label class="checkbox-item"><input type="checkbox" name="ads" value="tiktok"><span>TikTok</span></label>
+                    <label class="checkbox-item"><input type="checkbox" name="ads" value="youtube"><span>YouTube</span></label>
+                    <label class="checkbox-item"><input type="checkbox" name="ads" value="google"><span>Google</span></label>
+                    <label class="checkbox-item other-label"><input type="checkbox" name="ads" value="other"><span>Other:</span> <input type="text" placeholder="Specify"></label>
+                  </div>
                 </div>
-                <div class="checkbox-group conditional-input" style="display: none;">
-                  <label class="checkbox-item"><input type="checkbox" name="ads" value="instagram"><span>Instagram</span></label>
-                  <label class="checkbox-item"><input type="checkbox" name="ads" value="tiktok"><span>TikTok</span></label>
-                  <label class="checkbox-item"><input type="checkbox" name="ads" value="youtube"><span>YouTube</span></label>
-                  <label class="checkbox-item"><input type="checkbox" name="ads" value="google"><span>Google</span></label>
-                  <label class="checkbox-item other-label"><input type="checkbox" name="ads" value="other"><span>Other:</span> <input type="text" placeholder="Specify"></label>
-                </div>
               </div>
+              <button type="button" class="btn-secondary next-step-btn" data-next="step-stage">Next: Business Stage ↓</button>
             </div>
 
             <div id="dynamic-brands-container">
               <!-- Dynamically populated via JS if multiple brands selected -->
             </div>
 
-            <div class="form-section">
+            <!-- Step 2: Stage -->
+            <div class="form-section" id="step-stage">
               <h3>Business Stage</h3>
               <div class="form-group full-width">
                 <select id="stage" required>
@@ -207,9 +217,11 @@
                   <option value="established">An established and scaling business (Large)</option>
                 </select>
               </div>
+              <button type="button" class="btn-secondary next-step-btn" data-next="step-socials">Next: Social Presence ↓</button>
             </div>
 
-            <div class="form-section">
+            <!-- Step 3: Socials -->
+            <div class="form-section" id="step-socials">
               <h3>Social Presence</h3>
               <div class="form-group full-width">
                 <label>Are your socials already set up?</label>
@@ -218,31 +230,18 @@
                   <button type="button" class="toggle-btn" data-value="no">No, I need them built</button>
                 </div>
                 <div class="social-links-grid conditional-input" style="display: none;">
-                  <div class="social-input">
-                    <span class="social-icon">IG</span>
-                    <input type="url" placeholder="Instagram URL">
-                  </div>
-                  <div class="social-input">
-                    <span class="social-icon">FB</span>
-                    <input type="url" placeholder="Facebook URL">
-                  </div>
-                  <div class="social-input">
-                    <span class="social-icon">TT</span>
-                    <input type="url" placeholder="TikTok URL">
-                  </div>
-                  <div class="social-input">
-                    <span class="social-icon">LI</span>
-                    <input type="url" placeholder="LinkedIn URL">
-                  </div>
-                  <div class="social-input">
-                    <span class="social-icon">YT</span>
-                    <input type="url" placeholder="YouTube URL">
-                  </div>
+                  <div class="social-input"><span class="social-icon">IG</span><input type="url" placeholder="Instagram URL"></div>
+                  <div class="social-input"><span class="social-icon">FB</span><input type="url" placeholder="Facebook URL"></div>
+                  <div class="social-input"><span class="social-icon">TT</span><input type="url" placeholder="TikTok URL"></div>
+                  <div class="social-input"><span class="social-icon">LI</span><input type="url" placeholder="LinkedIn URL"></div>
+                  <div class="social-input"><span class="social-icon">YT</span><input type="url" placeholder="YouTube URL"></div>
                 </div>
               </div>
+              <button type="button" class="btn-secondary next-step-btn" data-next="step-challenge">Final Step: The Challenge ↓</button>
             </div>
 
-            <div class="form-section">
+            <!-- Step 4: Challenge -->
+            <div class="form-section" id="step-challenge">
               <h3>The Challenge</h3>
               <div class="form-group full-width">
                 <label for="challenge">Your Biggest Marketing Challenge</label>
@@ -267,5 +266,3 @@
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
-< ! - -   D e p l o y m e n t   F i x :   2 0 2 6 - 0 5 - 0 2 T 0 6 : 5 1 : 0 0   - - >  
- 

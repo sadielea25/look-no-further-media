@@ -11,11 +11,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Navbar scroll effect
   const navbar = document.querySelector('.navbar');
+  const progressSteps = document.querySelectorAll('.progress-step');
+  const formSections = document.querySelectorAll('.form-section');
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
+    }
+
+    // Update Progress Indicator based on scroll position
+    let currentStepId = 'step-details';
+    formSections.forEach(section => {
+      const sectionTop = section.offsetTop - 200;
+      if (window.scrollY >= sectionTop) {
+        currentStepId = section.getAttribute('id');
+      }
+    });
+
+    progressSteps.forEach(step => {
+      const target = step.getAttribute('data-target');
+      step.classList.remove('active', 'completed');
+      
+      const targetSection = document.getElementById(target);
+      const currentSection = document.getElementById(currentStepId);
+      
+      const targetIdx = parseInt(step.getAttribute('data-step'));
+      const currentIdx = parseInt(document.querySelector(`[data-target="${currentStepId}"]`)?.getAttribute('data-step') || 1);
+
+      if (target === currentStepId) {
+        step.classList.add('active');
+      } else if (targetIdx < currentIdx) {
+        step.classList.add('completed');
+      }
+    });
+  });
+
+  // Next Step Button Logic
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('next-step-btn')) {
+      const targetId = e.target.getAttribute('data-next');
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 120,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Click Progress Step to scroll
+    if (e.target.closest('.progress-step')) {
+      const step = e.target.closest('.progress-step');
+      const targetId = step.getAttribute('data-target');
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 120,
+          behavior: 'smooth'
+        });
+      }
     }
   });
 
