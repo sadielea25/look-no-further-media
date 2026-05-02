@@ -412,12 +412,16 @@
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
   outline: none;
   border-color: var(--color-red);
-  box-shadow: 0 0 10px rgba(229, 9, 20, 0.2);
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.4), inset 0 0 5px rgba(229, 9, 20, 0.2);
+  transform: translateY(-2px);
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  transition: all var(--transition-medium);
 }
 
 .btn-large.full-width {
@@ -556,11 +560,19 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4);
-  transition: transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: chatPulse 2s infinite;
 }
 
 .chat-bubble:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(5deg);
+  animation-play-state: paused;
+}
+
+@keyframes chatPulse {
+  0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(229, 9, 20, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
 }
 
 .chat-icon {
